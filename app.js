@@ -29,10 +29,16 @@ const renderCafe = (doc) => {
 // storing data
 form.addEventListener('submit', (e) => {
   e.preventDefault();
-  db.collection('cafes').add({
-    name: form.name.value,
-    city: form.city.value,
-  });
+  let nameValue = form.name.value.trim();
+  let cityValue = form.city.value.trim();
+  if (nameValue === '' || cityValue === '') {
+    alert('you should enter a cafe name and city!');
+  } else {
+    db.collection('cafes').add({
+      name: nameValue,
+      city: cityValue,
+    });
+  }
   form.name.value = '';
   form.city.value = '';
 });
